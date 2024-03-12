@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="">
+<meta name="dcterms.date" content="2024-03-11">
+
+<title>Site-level CFM analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="site_libs/quarto-dashboard/stickythead.js"></script>
+<script src="site_libs/quarto-dashboard/datatables.min.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/pdfmake.min.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/vfs_fonts.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="site_libs/quarto-dashboard/components.js"></script>
+<link href="site_libs/quarto-dashboard/datatables.min.css" rel="stylesheet" kdttablesentinel="true">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #3f2b80;
+      }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<meta property="og:title" content="Site-level CFM analysis">
+<meta property="og:description" content="Analysis of community feedback for the period of quarter 1 2024">
+</head>
+
+<body class="quarto-dashboard dashboard-fill fullcontent">
+
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">       
+    <a href="#"><img src="logo.svg" alt="" class="navbar-logo d-inline-block"></a>
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">Site-level CFM analysis</a></div>
+        <div class="navbar-subtitle">Analysis of community feedback for the period of quarter 1 2024</div>
+        
+      </div>
+    </div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-page-1" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#page-1" data-scrolling="false" href="#page-1" aria-controls="page-1" aria-selected="true"><span class="nav-link-text">Page 1</span></a></li><li class="nav-item" role="presentation"><a id="tab-page-2" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#page-2" data-scrolling="false" href="#page-2" aria-controls="page-2" aria-selected="false"><span class="nav-link-text">Page 2</span></a></li></ul><div class="quarto-dashboard-links"><a class="quarto-dashboard-link" href="https://github.com/brianmcdonald/Zite-Analysis/" title="GitHub"><i class="bi bi-github"></i></a></div></div></div>
+</nav>
+</header>
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+<!-- main -->
+
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div id="page-1" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-page-1">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 30fr) minmax(3em, 70fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="fill html-fill-item html-fill-container bslib-grid" data-layout="fill" style="display: grid; grid-template-columns: minmax(3em, 25fr) minmax(3em, 25fr) minmax(3em, 25fr) minmax(3em, 25fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="Box 1" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title">Box 1</div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>This box will show the average response rate for the site with a beeswarm plot showing its response rate against all other sites for comparision</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p>This box will show the average response time with a beeswarms plot to compare against all other sites</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="Box 3" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title">Box 3</div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>This box will show the site details and a dropdown to select another site</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container" style="padding: 0px;">
+<div class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="3">
+
+        <iframe width="100%" height="500" frameborder="0" srcdoc="<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    <title>pydeck</title>
+        <script src=&quot;https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js&quot;></script>
+        <link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css&quot; />
+    <link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css&quot; />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~8.8.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id=&quot;deck-container&quot;>
+    </div>
+  </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  &quot;initialViewState&quot;: {
+    &quot;bearing&quot;: 0,
+    &quot;latitude&quot;: 8.484153,
+    &quot;longitude&quot;: 40.367431,
+    &quot;pitch&quot;: 0,
+    &quot;zoom&quot;: 5
+  },
+  &quot;layers&quot;: [
+    {
+      &quot;@@type&quot;: &quot;ScatterplotLayer&quot;,
+      &quot;autoHighlight&quot;: true,
+      &quot;data&quot;: [
+        {
+          &quot;Closed&quot;: 72,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              42.39083082,
+              9.181378895
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.181378895,
+          &quot;lon&quot;: 42.39083082,
+          &quot;site&quot;: &quot;Qoliji&quot;,
+          &quot;site_id&quot;: &quot;ET050203001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 76,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 1,
+          &quot;Responded&quot;: 7,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              42.39363223,
+              9.177349235
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.177349235,
+          &quot;lon&quot;: 42.39363223,
+          &quot;site&quot;: &quot;Qoliji 2&quot;,
+          &quot;site_id&quot;: &quot;ET050203001002&quot;
+        },
+        {
+          &quot;Closed&quot;: 33,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 2,
+          &quot;Responded&quot;: 2,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              37.543493,
+              5.589293
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 5.589293,
+          &quot;lon&quot;: 37.543493,
+          &quot;site&quot;: &quot;Lultu Magazine&quot;,
+          &quot;site_id&quot;: &quot;ET071302004002&quot;
+        },
+        {
+          &quot;Closed&quot;: 16,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              37.545351,
+              5.588409
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 5.588409,
+          &quot;lon&quot;: 37.545351,
+          &quot;site&quot;: &quot;Ayilota Dokatu &quot;,
+          &quot;site_id&quot;: &quot;ET071302001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 20,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 1,
+          &quot;Responded&quot;: 2,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              37.516071,
+              5.522315
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 5.522315,
+          &quot;lon&quot;: 37.516071,
+          &quot;site&quot;: &quot;Kutiso Market&quot;,
+          &quot;site_id&quot;: &quot;ET071302004001&quot;
+        },
+        {
+          &quot;Closed&quot;: 14,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 3,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              37.353416,
+              5.389321
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 5.389321,
+          &quot;lon&quot;: 37.353416,
+          &quot;site&quot;: &quot;Gelabo FTC&quot;,
+          &quot;site_id&quot;: &quot;ET071302003001&quot;
+        },
+        {
+          &quot;Closed&quot;: 4,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 3,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              37.320002,
+              5.461383
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 5.461383,
+          &quot;lon&quot;: 37.320002,
+          &quot;site&quot;: &quot;Gomola&quot;,
+          &quot;site_id&quot;: &quot;ET071303002001&quot;
+        },
+        {
+          &quot;Closed&quot;: 5,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              37.548676,
+              5.587804
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 5.587804,
+          &quot;lon&quot;: 37.548676,
+          &quot;site&quot;: &quot;Segen Mezegaja&quot;,
+          &quot;site_id&quot;: &quot;ET071303004001&quot;
+        },
+        {
+          &quot;Closed&quot;: 6,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 1,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              37.44001,
+              5.448485
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 5.448485,
+          &quot;lon&quot;: 37.44001,
+          &quot;site&quot;: &quot;Balbala&quot;,
+          &quot;site_id&quot;: &quot;ET071302002001&quot;
+        },
+        {
+          &quot;Closed&quot;: 29,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.448291,
+              9.307284
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.307284,
+          &quot;lon&quot;: 41.448291,
+          &quot;site&quot;: &quot;Fadiso&quot;,
+          &quot;site_id&quot;: &quot;ET041011002001&quot;
+        },
+        {
+          &quot;Closed&quot;: 22,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              42.5757,
+              9.4434
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.4434,
+          &quot;lon&quot;: 42.5757,
+          &quot;site&quot;: &quot;Qobo Biqa&quot;,
+          &quot;site_id&quot;: &quot;ET041015002001&quot;
+        },
+        {
+          &quot;Closed&quot;: 68,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              42.6929,
+              9.5816
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.5816,
+          &quot;lon&quot;: 42.6929,
+          &quot;site&quot;: &quot;Tiro Gudo New&quot;,
+          &quot;site_id&quot;: &quot;ET041015003001&quot;
+        },
+        {
+          &quot;Closed&quot;: 23,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              42.5504,
+              9.4419
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.4419,
+          &quot;lon&quot;: 42.5504,
+          &quot;site&quot;: &quot;Wara Somane&quot;,
+          &quot;site_id&quot;: &quot;ET041015004001&quot;
+        },
+        {
+          &quot;Closed&quot;: 20,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              42.6938,
+              9.4669
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.4669,
+          &quot;lon&quot;: 42.6938,
+          &quot;site&quot;: &quot;Biyo Gababdu&quot;,
+          &quot;site_id&quot;: &quot;ET041015001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 14,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              42.7008,
+              9.4702
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.4702,
+          &quot;lon&quot;: 42.7008,
+          &quot;site&quot;: &quot;Wara Yaya/Sheik Madobe/&quot;,
+          &quot;site_id&quot;: &quot;ET041015001002&quot;
+        },
+        {
+          &quot;Closed&quot;: 38,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              40.5168,
+              8.8144
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 8.8144,
+          &quot;lon&quot;: 40.5168,
+          &quot;site&quot;: &quot;Gelemso 01&quot;,
+          &quot;site_id&quot;: &quot;ET040908001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 25,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.444051,
+              9.319757
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.319757,
+          &quot;lon&quot;: 41.444051,
+          &quot;site&quot;: &quot;Woreda Water Office&quot;,
+          &quot;site_id&quot;: &quot;ET041011001006&quot;
+        },
+        {
+          &quot;Closed&quot;: 14,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.441128,
+              9.315539
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.315539,
+          &quot;lon&quot;: 41.441128,
+          &quot;site&quot;: &quot;DDC&quot;,
+          &quot;site_id&quot;: &quot;ET041011001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 16,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.0972,
+              9.2251
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.2251,
+          &quot;lon&quot;: 41.0972,
+          &quot;site&quot;: &quot;New Extension Site&quot;,
+          &quot;site_id&quot;: &quot;ET040903001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 41,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.0972686,
+              9.21617784
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.21617784,
+          &quot;lon&quot;: 41.0972686,
+          &quot;site&quot;: &quot;Tulo Town (Hirna Town)&quot;,
+          &quot;site_id&quot;: &quot;ET040903001002&quot;
+        },
+        {
+          &quot;Closed&quot;: 32,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.4485,
+              9.330996
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.330996,
+          &quot;lon&quot;: 41.4485,
+          &quot;site&quot;: &quot;New Golmasa&quot;,
+          &quot;site_id&quot;: &quot;ET041011001003&quot;
+        },
+        {
+          &quot;Closed&quot;: 28,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.369978,
+              9.384309
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.384309,
+          &quot;lon&quot;: 41.369978,
+          &quot;site&quot;: &quot;Ganda Wagayehu&quot;,
+          &quot;site_id&quot;: &quot;ET041010003001&quot;
+        },
+        {
+          &quot;Closed&quot;: 31,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.36229,
+              9.375462
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.375462,
+          &quot;lon&quot;: 41.36229,
+          &quot;site&quot;: &quot;Karamile&quot;,
+          &quot;site_id&quot;: &quot;ET041010002001&quot;
+        },
+        {
+          &quot;Closed&quot;: 32,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.363916,
+              9.375431
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.375431,
+          &quot;lon&quot;: 41.363916,
+          &quot;site&quot;: &quot;Ali Sheko Camp&quot;,
+          &quot;site_id&quot;: &quot;ET041010001002&quot;
+        },
+        {
+          &quot;Closed&quot;: 28,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.365916,
+              9.374623
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.374623,
+          &quot;lon&quot;: 41.365916,
+          &quot;site&quot;: &quot;Agricultural Office&quot;,
+          &quot;site_id&quot;: &quot;ET041010001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 19,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.4415,
+              9.3198
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.3198,
+          &quot;lon&quot;: 41.4415,
+          &quot;site&quot;: &quot;Woreda Youth Association Hall&quot;,
+          &quot;site_id&quot;: &quot;ET041011001007&quot;
+        },
+        {
+          &quot;Closed&quot;: 14,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.44811917,
+              9.32991059
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.32991059,
+          &quot;lon&quot;: 41.44811917,
+          &quot;site&quot;: &quot;Golmasa&quot;,
+          &quot;site_id&quot;: &quot;ET041011001002&quot;
+        },
+        {
+          &quot;Closed&quot;: 23,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              40.75782851,
+              9.24354606
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.24354606,
+          &quot;lon&quot;: 40.75782851,
+          &quot;site&quot;: &quot;Ganda Buno&quot;,
+          &quot;site_id&quot;: &quot;ET040901001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 22,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              40.39067,
+              9.02686
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.02686,
+          &quot;lon&quot;: 40.39067,
+          &quot;site&quot;: &quot;Magala Lami&quot;,
+          &quot;site_id&quot;: &quot;ET040991001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 50,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.861995,
+              9.449323
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.449323,
+          &quot;lon&quot;: 41.861995,
+          &quot;site&quot;: &quot;Kersa Town&quot;,
+          &quot;site_id&quot;: &quot;ET041008001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 10,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Chelenko New Extension Site&quot;,
+          &quot;site_id&quot;: &quot;ET041009001003&quot;
+        },
+        {
+          &quot;Closed&quot;: 24,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              41.5577753,
+              9.4003309
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 9.4003309,
+          &quot;lon&quot;: 41.5577753,
+          &quot;site&quot;: &quot;Chelenko food store&quot;,
+          &quot;site_id&quot;: &quot;ET041009001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 3,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 3,
+          &quot;Responded&quot;: 2,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.8952795,
+              14.1696947
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.1696947,
+          &quot;lon&quot;: 38.8952795,
+          &quot;site&quot;: &quot;Wowokma Elementary school&quot;,
+          &quot;site_id&quot;: &quot;ET010212001002&quot;
+        },
+        {
+          &quot;Closed&quot;: 9,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 1,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.301855,
+              14.1064036
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.1064036,
+          &quot;lon&quot;: 38.301855,
+          &quot;site&quot;: &quot;Fre Swuat Secondary school&quot;,
+          &quot;site_id&quot;: &quot;ET010108002003&quot;
+        },
+        {
+          &quot;Closed&quot;: 17,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 2,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.901261,
+              14.1671344
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.1671344,
+          &quot;lon&quot;: 38.901261,
+          &quot;site&quot;: &quot;Nigste Saba Secondary School&quot;,
+          &quot;site_id&quot;: &quot;ET010212004004&quot;
+        },
+        {
+          &quot;Closed&quot;: 22,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 5,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Endabaguna Reception Center&quot;,
+          &quot;site_id&quot;: &quot;ET010114001004&quot;
+        },
+        {
+          &quot;Closed&quot;: 18,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 3,
+          &quot;Responded&quot;: 3,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.2889677,
+              14.1063274
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.1063274,
+          &quot;lon&quot;: 38.2889677,
+          &quot;site&quot;: &quot;Tsehaye Elementary school&quot;,
+          &quot;site_id&quot;: &quot;ET010108005002&quot;
+        },
+        {
+          &quot;Closed&quot;: 19,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.8578027,
+              14.1584741
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.1584741,
+          &quot;lon&quot;: 38.8578027,
+          &quot;site&quot;: &quot;Adwa industrial Zone (AIZ)&quot;,
+          &quot;site_id&quot;: &quot;ET010212001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 0,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 5,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Adwa Miebale Kebele - ABA&quot;,
+          &quot;site_id&quot;: &quot;ET010212009001&quot;
+        },
+        {
+          &quot;Closed&quot;: 0,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 5,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Adwa Debrichi Kebele - ABA&quot;,
+          &quot;site_id&quot;: &quot;ET010212001001_temp&quot;
+        },
+        {
+          &quot;Closed&quot;: 1,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Adwa Hayelom Kebele - ABA&quot;,
+          &quot;site_id&quot;: &quot;ET010212003001&quot;
+        },
+        {
+          &quot;Closed&quot;: 103,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 10,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              39.2501,
+              13.2935
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 13.2935,
+          &quot;lon&quot;: 39.2501,
+          &quot;site&quot;: &quot;Sebacare 4&quot;,
+          &quot;site_id&quot;: &quot;ET010707001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 17,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 8,
+          &quot;Responded&quot;: 2,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.280815,
+              14.113468
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.113468,
+          &quot;lon&quot;: 38.280815,
+          &quot;site&quot;: &quot;Guna Poultry Farm&quot;,
+          &quot;site_id&quot;: &quot;ET010108001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 13,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 5,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.901261,
+              14.167134
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.167134,
+          &quot;lon&quot;: 38.901261,
+          &quot;site&quot;: &quot;Nigste Saba Secondary School 2&quot;,
+          &quot;site_id&quot;: &quot;ET010212004005&quot;
+        },
+        {
+          &quot;Closed&quot;: 9,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 2,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.88642497,
+              14.158311
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.158311,
+          &quot;lon&quot;: 38.88642497,
+          &quot;site&quot;: &quot;Korea Secondary School&quot;,
+          &quot;site_id&quot;: &quot;ET010212005002&quot;
+        },
+        {
+          &quot;Closed&quot;: 17,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 4,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Midregenet Secondary School&quot;,
+          &quot;site_id&quot;: &quot;ET010108005001&quot;
+        },
+        {
+          &quot;Closed&quot;: 11,
+          &quot;In-Progress&quot;: 1,
+          &quot;Open&quot;: 1,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.285713,
+              14.108955
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.108955,
+          &quot;lon&quot;: 38.285713,
+          &quot;site&quot;: &quot;Atsede Kindergarten &quot;,
+          &quot;site_id&quot;: &quot;ET010108002002&quot;
+        },
+        {
+          &quot;Closed&quot;: 23,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.2796041226,
+              14.0940627018
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.0940627018,
+          &quot;lon&quot;: 38.2796041226,
+          &quot;site&quot;: &quot;Taba Weyane Tsinat Primary School&quot;,
+          &quot;site_id&quot;: &quot;ET010108004003&quot;
+        },
+        {
+          &quot;Closed&quot;: 24,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 4,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Endabaguna Screening Center&quot;,
+          &quot;site_id&quot;: &quot;ET010114001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 6,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Adi Daero Elementary School&quot;,
+          &quot;site_id&quot;: &quot;ET010111001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 9,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Farmers Training Center &quot;,
+          &quot;site_id&quot;: &quot;ET010110001002&quot;
+        },
+        {
+          &quot;Closed&quot;: 8,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              39.500151,
+              13.5343815
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 13.5343815,
+          &quot;lon&quot;: 39.500151,
+          &quot;site&quot;: &quot;Mesebo Secondary School&quot;,
+          &quot;site_id&quot;: &quot;ET010706002002&quot;
+        },
+        {
+          &quot;Closed&quot;: 21,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 4,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Lekatit 11 Elementary School&quot;,
+          &quot;site_id&quot;: &quot;ET010704001002&quot;
+        },
+        {
+          &quot;Closed&quot;: 27,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 2,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              39.4568735,
+              13.5244383
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 13.5244383,
+          &quot;lon&quot;: 39.4568735,
+          &quot;site&quot;: &quot;Adiha Secondary School&quot;,
+          &quot;site_id&quot;: &quot;ET010706001001&quot;
+        },
+        {
+          &quot;Closed&quot;: 20,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 1,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              39.4632582,
+              13.5113802
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 13.5113802,
+          &quot;lon&quot;: 39.4632582,
+          &quot;site&quot;: &quot;Lekatit 23 Secondary School&quot;,
+          &quot;site_id&quot;: &quot;ET010706003001&quot;
+        },
+        {
+          &quot;Closed&quot;: 31,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 4,
+          &quot;Responded&quot;: 3,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Momona Secondary School&quot;,
+          &quot;site_id&quot;: &quot;ET010702004001&quot;
+        },
+        {
+          &quot;Closed&quot;: 1,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Ethio China  friendship primary School&quot;,
+          &quot;site_id&quot;: &quot;ET010702002001&quot;
+        },
+        {
+          &quot;Closed&quot;: 20,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              39.2717,
+              14.1642
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.1642,
+          &quot;lon&quot;: 39.2717,
+          &quot;site&quot;: &quot;Commission &quot;,
+          &quot;site_id&quot;: &quot;ET010308003001&quot;
+        },
+        {
+          &quot;Closed&quot;: 24,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 5,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              39.28165,
+              14.172915
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.172915,
+          &quot;lon&quot;: 39.28165,
+          &quot;site&quot;: &quot;UNMEE &quot;,
+          &quot;site_id&quot;: &quot;ET010308002001&quot;
+        },
+        {
+          &quot;Closed&quot;: 21,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 2,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Shire Kebele 03 - ABA&quot;,
+          &quot;site_id&quot;: &quot;ET010108004004&quot;
+        },
+        {
+          &quot;Closed&quot;: 14,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 0,
+          &quot;Responded&quot;: 4,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              85.324,
+              27.7172
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 27.7172,
+          &quot;lon&quot;: 85.324,
+          &quot;site&quot;: &quot;Shire  Kebele 02 - ABA&quot;,
+          &quot;site_id&quot;: &quot;ET010108002004&quot;
+        },
+        {
+          &quot;Closed&quot;: 11,
+          &quot;In-Progress&quot;: 0,
+          &quot;Open&quot;: 2,
+          &quot;Responded&quot;: 0,
+          &quot;geometry&quot;: {
+            &quot;coordinates&quot;: [
+              38.8979121,
+              14.1543055
+            ],
+            &quot;type&quot;: &quot;Point&quot;
+          },
+          &quot;lat&quot;: 14.1543055,
+          &quot;lon&quot;: 38.8979121,
+          &quot;site&quot;: &quot;Enda Tsion Elementary School&quot;,
+          &quot;site_id&quot;: &quot;ET010212002001&quot;
+        }
+      ],
+      &quot;filled&quot;: true,
+      &quot;getFillColor&quot;: [
+        254,
+        189,
+        51
+      ],
+      &quot;getPosition&quot;: &quot;@@=geometry.coordinates&quot;,
+      &quot;id&quot;: &quot;5b95d1ff-1d0d-4e77-a540-1fe4fe202e20&quot;,
+      &quot;onClick&quot;: {},
+      &quot;pickable&quot;: true,
+      &quot;radiusMinPixels&quot;: 3,
+      &quot;widthMinPixels&quot;: 5
+    }
+  ],
+  &quot;mapProvider&quot;: &quot;carto&quot;,
+  &quot;mapStyle&quot;: &quot;https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json&quot;,
+  &quot;views&quot;: [
+    {
+      &quot;@@type&quot;: &quot;MapView&quot;,
+      &quot;controller&quot;: true
+    }
+  ]
+};
+    const tooltip = {'html': '<b>Site ID:</b> {site_id}</br><b>Name:</b> {site}</br><b>Closed:</b> {Closed}</br><b>Open:</b> {Open}', 'style': {'backgroundColor': '#ffe9c0', 'color': '#30302f'}};
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration
+    });
+
+  </script>
+</html>"></iframe>
+    
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 34fr) minmax(3em, 33fr) minmax(3em, 33fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card tabset html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header dashboard-card-no-title bslib-navs-card-title">
+
+<ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-5"><li class="nav-item" role="presentation"><a href="#card-tabset-5-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Box 4" aria-selected="true" class="nav-link active">Box 4</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-5-2" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Box 5" aria-selected="false" class="nav-link">Box 5</a></li></ul></div>
+
+
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-5"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-5-1"><div class="card-body html-fill-item html-fill-container" data-title="Box 4">
+<p>This box will show a table of the top 10 most-common issues.</p>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-5-2"><div class="card-body html-fill-item html-fill-container" data-title="Box 5">
+<p>example of tabset.</p>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="4">
+<div id="almrhykbjd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="html-fill-item html-fill-container">
+<style>
+#almrhykbjd table {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+#almrhykbjd thead, tbody, tfoot, tr, td, th { border-style: none; }
+#almrhykbjd p { margin: 0; padding: 0; }
+ #almrhykbjd .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: 100%; border-top-style: None; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: None; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #almrhykbjd .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #almrhykbjd .gt_title { color: #FFFFFF; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #almrhykbjd .gt_subtitle { color: #FFFFFF; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #almrhykbjd .gt_heading { background-color: #3f2b80; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #almrhykbjd .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #almrhykbjd .gt_col_headings { border-top-style: None; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #febd33; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #almrhykbjd .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: bold; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #almrhykbjd .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: bold; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #almrhykbjd .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #almrhykbjd .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #almrhykbjd .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #febd33; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #almrhykbjd .gt_spanner_row { border-bottom-style: hidden; }
+ #almrhykbjd .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #almrhykbjd .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #almrhykbjd .gt_from_md> :first-child { margin-top: 0; }
+ #almrhykbjd .gt_from_md> :last-child { margin-bottom: 0; }
+ #almrhykbjd .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #almrhykbjd .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #almrhykbjd .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #almrhykbjd .gt_row_group_first td { border-top-width: 2px; }
+ #almrhykbjd .gt_row_group_first th { border-top-width: 2px; }
+ #almrhykbjd .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #febd33; }
+ #almrhykbjd .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #almrhykbjd .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; }
+ #almrhykbjd .gt_left { text-align: left; }
+ #almrhykbjd .gt_center { text-align: center; }
+ #almrhykbjd .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #almrhykbjd .gt_font_normal { font-weight: normal; }
+ #almrhykbjd .gt_font_bold { font-weight: bold; }
+ #almrhykbjd .gt_font_italic { font-style: italic; }
+ #almrhykbjd .gt_super { font-size: 65%; }
+ #almrhykbjd .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #almrhykbjd .gt_asterisk { font-size: 100%; vertical-align: 0; }
+ 
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead class="gt_header">  <tr>
+    <th colspan="2" class="gt_heading gt_title gt_font_normal">Referrals by Sector
+  </th></tr></thead>
+<tbody><tr class="gt_col_headings"><th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="sector">sector</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="count">count</th></tr>
+</tbody><tbody class="gt_table_body">
+<tr>
+  <td class="gt_row gt_left">WASH</td>
+  <td class="gt_row gt_center">393</td>
+</tr>
+<tr>
+  <td class="gt_row gt_left">SNFI</td>
+  <td class="gt_row gt_center">313</td>
+</tr>
+<tr>
+  <td class="gt_row gt_left">FSL</td>
+  <td class="gt_row gt_center">307</td>
+</tr>
+<tr>
+  <td class="gt_row gt_left">CCCM</td>
+  <td class="gt_row gt_center">186</td>
+</tr>
+<tr>
+  <td class="gt_row gt_left">Protection</td>
+  <td class="gt_row gt_center">108</td>
+</tr>
+<tr>
+  <td class="gt_row gt_left">Health</td>
+  <td class="gt_row gt_center">105</td>
+</tr>
+<tr>
+  <td class="gt_row gt_left">Education</td>
+  <td class="gt_row gt_center">58</td>
+</tr>
+<tr>
+  <td class="gt_row gt_left">Nutrition</td>
+  <td class="gt_row gt_center">39</td>
+</tr>
+<tr>
+  <td class="gt_row gt_left"></td>
+  <td class="gt_row gt_center">4</td>
+</tr>
+</tbody>
+  <tfoot class="gt_sourcenotes">
+  
+  <tr>
+    <td class="gt_sourcenote" colspan="2">Footnote: Lorem ipsum</td>
+  </tr>
+
+</tfoot>
+
+</table>
+
+</div>
+        
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="Box 5" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title">Box 5</div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>This box will show a table of the key figures, such as number of received, referred and resolved tickets.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+</div>
+<div id="page-2" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-page-2">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: ; grid-auto-columns: minmax(0, 1fr);">
+
+
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+</div>
+
+
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
+
+
+
+</body></html>
